@@ -1,0 +1,156 @@
+using System;
+using System.Collections.Generic;
+
+public interface ILibraryCatalog
+{
+    void AddBook(Book book);
+    void RemoveBook(string isbn);
+    Book GetBook(string isbn);
+}
+
+public interface IUser
+{
+    void Display();
+}
+
+public class LibraryCatalog : ILibraryCatalog
+{
+    private Dictionary<string, Book> books;
+
+    public LibraryCatalog()
+    {
+        books = new Dictionary<string, Book>();
+    }
+
+    public void AddBook(Book book)
+    {
+        if (!books.ContainsKey(book.ISBN))
+        {
+            books.Add(book.ISBN, book);
+            Console.WriteLine($"Book with ISBN {book.ISBN} added to the catalog.");
+        }
+        else
+        {
+            Console.WriteLine($"Book with ISBN {book.ISBN} already exists in the catalog.");
+        }
+    }
+
+    public void RemoveBook(string isbn)
+    {
+        if (books.ContainsKey(isbn))
+        {
+            books.Remove(isbn);
+            Console.WriteLine($"Book with ISBN {isbn} removed from the catalog.");
+        }
+        else
+        {
+            Console.WriteLine($"Book with ISBN {isbn} not found in the catalog.");
+        }
+    }
+
+    public Book GetBook(string isbn)
+    {
+        if (books.ContainsKey(isbn))
+        {
+            return books[isbn];
+        }
+        else
+        {
+            Console.WriteLine($"Book with ISBN {isbn} not found in the catalog.");
+            return null;
+        }
+    }
+
+    public Book this[string isbn]
+    {
+        get { return GetBook(isbn); }
+    }
+}
+
+public class Book
+{
+    public string ISBN { get; private set; }
+    public string Title { get; private set; }
+    public string Author { get; private set; }
+
+    public Book(string isbn, string title, string author)
+    {
+        ISBN = isbn;
+        Title = title;
+        Author = author;
+    }
+}
+
+public class User : IUser
+{
+    private string name;
+
+    public User(string name)
+    {
+        this.name = name;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"User: {name}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+       
+        LibraryCatalog catalog = new LibraryCatalog();
+
+
+        Console.Write("Enter user name: ");
+        string userName = Console.ReadLine();
+        IUser user = new User(userName);
+        user.Display();
+
+        while (true)
+        {
+            Console.WriteLine("\nChoose an option:");
+            Console.WriteLine("1. Add a book");
+            Console.WriteLine("2. Remove a book");
+            Console.WriteLine("3. Search for a book");
+            Console.WriteLine("4. Exit");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    Console.Write("Enter ISBN: ");
+                    string isbn = Console.ReadLine();
+                    Console.Write("Enter title: ");
+                    string title = Console.ReadLine();
+                    Console.Write("Enter author: ");
+                    string author = Console.ReadLine();
+                    catalog.AddBook(new Book(isbn, title, author));
+                    break;
+                case "2":
+                    Console.Write("Enter ISBN of the book to remove: ");
+                    string removeIsbn = Console.ReadLine();
+                    catalog.RemoveBook(removeIsbn);
+                    break;
+                case "3":
+                    Console.Write("Enter ISBN of the book to search: ");
+                    string searchIsbn = Console.ReadLine();
+                    Book foundBook = catalog.GetBook(searchIsbn);
+                    if (foundBook != null)
+                    {
+                        Console.WriteLine($"Book found: {foundBook.Title} by {foundBook.Author}");
+                    }
+                    break;
+                case "4":
+                    Console.WriteLine("Exiting...");
+                    return;
+                default:
+                    Console.WriteLine("Invalid option. Please try again.");
+                    break;
+            }
+        }
+    }
+}
