@@ -1,0 +1,61 @@
+1.Create an interface named IShape with a method named GetArea() that returns a double value.
+2.Create a class named Rectangle that implements the IShape interface and has length and width fields. The GetArea() method should calculate and return the area of the rectangle( width*height)    
+3.Create a class named ShapedCalculator that has a method named CalculateArea() that takes an IShape object as a parameter and returns the area of the shape                                                                                          4.Create instance of the Rectangle class and use the ShapeCalculator to calculate their areas.         
+SOLUTION:
+
+using System;
+
+// Step 1: Create an interface named IShape
+public interface IShape
+{
+    double GetArea();
+}
+
+// Step 2: Create a class named Rectangle that implements the IShape interface
+public class Rectangle : IShape
+{
+    // Fields
+    private double length;
+    private double width;
+
+    // Constructor
+    public Rectangle(double length, double width)
+    {
+        this.length = length;
+        this.width = width;
+    }
+
+    // Implementation of GetArea method
+    public double GetArea()
+    {
+        return length * width;
+    }
+}
+
+// Step 3: Create a class named ShapeCalculator
+public class ShapeCalculator
+{
+    // Method to calculate the area of a shape
+    public double CalculateArea(IShape shape)
+    {
+        return shape.GetArea();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Step 4: Create instances of the Rectangle class and use the ShapeCalculator to calculate their areas
+        Rectangle rectangle1 = new Rectangle(5, 4);
+        Rectangle rectangle2 = new Rectangle(3, 7);
+
+        ShapeCalculator calculator = new ShapeCalculator();
+
+        double area1 = calculator.CalculateArea(rectangle1);
+        double area2 = calculator.CalculateArea(rectangle2);
+
+        Console.WriteLine("Area of Rectangle 1: " + area1);
+        Console.WriteLine("Area of Rectangle 2: " + area2);
+    }
+}
