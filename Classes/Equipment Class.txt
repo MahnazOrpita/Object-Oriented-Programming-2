@@ -1,0 +1,51 @@
+public class Equipment
+{
+    // Properties
+    private int equipmentID;
+    private string equipmentName;
+    private int quantity;
+    private string description;
+
+    // Constructor
+    public Equipment(int equipmentID, string equipmentName, int quantity, string description)
+    {
+        this.equipmentID = equipmentID;
+        this.equipmentName = equipmentName;
+        this.quantity = quantity;
+        this.description = description;
+    }
+
+    // Properties with Getters and Setters
+    public int EquipmentID
+    {
+        get { return equipmentID; }
+        set { equipmentID = value; }
+    }
+
+    public string EquipmentName
+    {
+        get { return equipmentName; }
+        set { equipmentName = value; }
+    }
+
+    public int Quantity
+    {
+        get { return quantity; }
+        set { quantity = value; }
+    }
+
+    public string Description
+    {
+        get { return description; }
+        set { description = value; }
+    }
+
+    // Additional Methods
+    public void DisplayEquipmentDetails()
+    {
+        Console.WriteLine($"Equipment ID: {EquipmentID}");
+        Console.WriteLine($"Equipment Name: {EquipmentName}");
+        Console.WriteLine($"Quantity: {Quantity}");
+        Console.WriteLine($"Description: {Description}");
+    }
+}

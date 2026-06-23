@@ -1,0 +1,118 @@
+using System;
+
+public class Officer
+{
+    // Properties
+    private string name;
+    private int officerID;
+    private Rank rank;
+    private DateTime dateOfBirth;
+    private string phoneNumber;
+    private string email;
+    private string address;
+    private Unit assignedUnit;
+
+    // Constructor
+    public Officer(string name, int officerID, Rank rank, DateTime dateOfBirth, string phoneNumber, string email, string address, Unit assignedUnit)
+    {
+        this.name = name;
+        this.officerID = officerID;
+        this.rank = rank;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.assignedUnit = assignedUnit;
+    }
+
+    // Properties with Getters and Setters
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
+
+    public int OfficerID
+    {
+        get { return officerID; }
+        set { officerID = value; }
+    }
+
+    public Rank Rank
+    {
+        get { return rank; }
+        set { rank = value; }
+    }
+
+    public DateTime DateOfBirth
+    {
+        get { return dateOfBirth; }
+        set { dateOfBirth = value; }
+    }
+
+    public string PhoneNumber
+    {
+        get { return phoneNumber; }
+        set { phoneNumber = value; }
+    }
+
+    public string Email
+    {
+        get { return email; }
+        set { email = value; }
+    }
+
+    public string Address
+    {
+        get { return address; }
+        set { address = value; }
+    }
+
+    public Unit AssignedUnit
+    {
+        get { return assignedUnit; }
+        set { assignedUnit = value; }
+    }
+
+    // Additional Methods
+    public void DisplayOfficerDetails()
+    {
+        Console.WriteLine($"Officer Name: {Name}");
+        Console.WriteLine($"Officer ID: {OfficerID}");
+        Console.WriteLine($"Rank: {Rank}");
+        Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");
+        Console.WriteLine($"Phone Number: {PhoneNumber}");
+        Console.WriteLine($"Email: {Email}");
+        Console.WriteLine($"Address: {Address}");
+        Console.WriteLine($"Assigned Unit: {AssignedUnit}");
+    }
+}
+
+// Enum for Officer Rank
+public enum Rank
+{
+    SecondLieutenant,
+    Lieutenant,
+    Captain,
+    Major,
+    LieutenantColonel,
+    Colonel,
+    BrigadierGeneral,
+    MajorGeneral,
+    LieutenantGeneral,
+    General
+}
+
+// Enum for Unit
+public enum Unit
+{
+    Infantry,
+    Artillery,
+    Cavalry,
+    Engineering,
+    Logistics,
+    Medical,
+    SpecialForces,
+    Intelligence,
+    Communications
+}

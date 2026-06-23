@@ -1,0 +1,34 @@
+using System;
+
+public class Soldier
+{
+    // Properties
+    public string Name { get; set; }
+    public int Id { get; }
+    public string Rank { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public string Unit { get; set; }
+    public string Specialty { get; set; }
+
+    // Constructor
+    public Soldier(string name, int id, string rank, DateTime dateOfBirth, string unit, string specialty)
+    {
+        Name = name;
+        Id = id;
+        Rank = rank;
+        DateOfBirth = dateOfBirth;
+        Unit = unit;
+        Specialty = specialty;
+    }
+
+    // Method to display soldier information
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"ID: {Id}");
+        Console.WriteLine($"Rank: {Rank}");
+        Console.WriteLine($"Date of Birth: {DateOfBirth.ToShortDateString()}");
+        Console.WriteLine($"Unit: {Unit}");
+        Console.WriteLine($"Specialty: {Specialty}");
+    }
+}
